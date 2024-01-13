@@ -1,3 +1,8 @@
-# cosc470s24 - SOURCE REPO
+# cosc470s24 - JohnPaul's Fork
 
-This is the main source of code for our Spring 2024 COSC 470 Artificial Intelligence class. It will function as the distribution of starting points and solutions to assignments.
+For Spring 2024 COSC 470 Artificial Intelligence class, taught by Dr. Toone
+
+My work is saved as *_Solution
+
+## Status
+- Lab 1 Game Of Life: complete
