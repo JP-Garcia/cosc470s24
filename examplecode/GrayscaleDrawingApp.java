@@ -77,30 +77,25 @@ public class GrayscaleDrawingApp extends JFrame {
         repaint();
     }
 
+    private int imageCounter = 0; // Counter to keep track of saved images
+
     private void saveDrawing() {
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Save Drawing");
-        fileChooser.setSelectedFile(new File("drawing.png"));
-        fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("PNG Image", "png"));
-
-        int userSelection = fileChooser.showSaveDialog(this);
-
-        if (userSelection == JFileChooser.APPROVE_OPTION) {
-            File fileToSave = fileChooser.getSelectedFile();
-            if (!fileToSave.getAbsolutePath().endsWith(".png")) {
-                fileToSave = new File(fileToSave + ".png");
-            }
-
-            try {
-                Graphics2D g2dSmall = smallImage.createGraphics();
-                g2dSmall.drawImage(image, 0, 0, 28, 28, null);
-                g2dSmall.dispose();
-                ImageIO.write(smallImage, "png", fileToSave);
-                JOptionPane.showMessageDialog(this, "Drawing saved as " + fileToSave.getName(), "Save Successful", JOptionPane.INFORMATION_MESSAGE);
-            } catch (IOException ex) {
-                ex.printStackTrace();
-                JOptionPane.showMessageDialog(this, "Error saving image: " + ex.getMessage(), "Save Error", JOptionPane.ERROR_MESSAGE);
-            }
+        // Construct the file path with sequential filename
+        String filePath = "images/good" + imageCounter + ".png";
+        File fileToSave = new File(filePath);
+    
+        try {
+            Graphics2D g2dSmall = smallImage.createGraphics();
+            g2dSmall.drawImage(image, 0, 0, 28, 28, null);
+            g2dSmall.dispose();
+            ImageIO.write(smallImage, "png", fileToSave);
+            JOptionPane.showMessageDialog(this, "Drawing saved as " + fileToSave.getName(), "Save Successful", JOptionPane.INFORMATION_MESSAGE);
+    
+            // Increment the image counter for the next save
+            imageCounter++;
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error saving image: " + ex.getMessage(), "Save Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
